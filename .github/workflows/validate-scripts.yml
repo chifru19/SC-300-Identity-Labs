@@ -13,9 +13,6 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v4
 
-    - name: Set up PowerShell
-      uses: microsoft/ps-start@v1
-
     - name: Install PSScriptAnalyzer Module
       shell: pwsh
       run: |
