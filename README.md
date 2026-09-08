@@ -27,3 +27,5 @@ Welcome to my hands-on portfolio repository documenting my 90-day technical proj
 1. Install the Microsoft Graph PowerShell SDK: \Install-Module Microsoft.Graph -Scope CurrentUser\
 2. Connect to your tenant with required scopes: \Connect-MgGraph -Scopes "AdministrativeUnit.ReadWrite.All", "RoleManagement.ReadWrite.Directory"\
 3. Execute desired scripts from the \scripts/\ directory.
+
+* **[10-Audit-WorkloadIdentities.ps1](scripts/10-Audit-WorkloadIdentities.ps1):** Audits tenant Service Principals and App Registrations for high-risk configurations.
