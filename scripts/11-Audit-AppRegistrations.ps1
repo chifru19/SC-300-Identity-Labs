@@ -18,7 +18,7 @@ try {
     Write-Host "Fetching registered applications..." -ForegroundColor Cyan
     $apps = Get-MgApplication -Top 10 -Property Id, DisplayName, CreatedDateTime, KeyCredentials, PasswordCredentials
     
-    foreach ($app in $apps) {
+    $results = foreach ($app in $apps) {
         [PSCustomObject]@{
             AppName         = $app.DisplayName
             AppId           = $app.Id
@@ -26,7 +26,13 @@ try {
             HasSecrets      = ($app.PasswordCredentials.Count -gt 0)
             HasCertificates = ($app.KeyCredentials.Count -gt 0)
         }
-    } | Format-Table -AutoSize
+    }
+    
+    if ($results) {
+        $results | Format-Table -AutoSize
+    } else {
+        Write-Host "No application registrations found in this tenant." -ForegroundColor Yellow
+    }
 }
 catch {
     Write-Error "Failed to retrieve applications: $_"
