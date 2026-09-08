@@ -22,9 +22,15 @@ jobs:
       shell: pwsh
       run: |
         $results = Invoke-ScriptAnalyzer -Path ./scripts -Recurse
+        $errors = $results.Where({ $_.Severity -eq 'Error' })
+        
         if ($results) {
             $results | Format-Table
-            Write-Error "PSScriptAnalyzer found style or syntax warnings/errors."
+        }
+        
+        if ($errors) {
+            Write-Error "PSScriptAnalyzer found critical syntax or script errors."
+            exit 1
         } else {
             Write-Host "All scripts passed PSScriptAnalyzer validation successfully!" -ForegroundColor Green
         }
