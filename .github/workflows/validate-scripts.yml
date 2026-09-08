@@ -1,0 +1,33 @@
+name: Validate PowerShell Lab Scripts
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test-scripts:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Set up PowerShell
+      uses: microsoft/ps-start@v1
+
+    - name: Install PSScriptAnalyzer Module
+      shell: pwsh
+      run: |
+        Install-Module -Name PSScriptAnalyzer -Force -Scope CurrentUser
+
+    - name: Lint PowerShell Scripts
+      shell: pwsh
+      run: |
+        $results = Invoke-ScriptAnalyzer -Path ./scripts -Recurse
+        if ($results) {
+            $results | Format-Table
+            Write-Error "PSScriptAnalyzer found style or syntax warnings/errors."
+        } else {
+            Write-Host "All scripts passed PSScriptAnalyzer validation successfully!" -ForegroundColor Green
+        }
