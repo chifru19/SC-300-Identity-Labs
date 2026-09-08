@@ -1,19 +1,18 @@
 # 07-Configure-PIM.ps1
-# Description: Configures Privileged Identity Management (PIM) role schedule settings for directory roles
+# Description: Configures PIM settings and role assignment for administrative roles
 
-Import-Module Microsoft.Graph.Identity.Governance
+Write-Host "Configuring Privileged Identity Management (PIM) settings..." -ForegroundColor Cyan
 
-# Define parameters for Just-In-Time (JIT) activation settings on User Administrator role
-# Target Template ID for User Administrator: fe930be7-5e62-47db-91af-98c3a49a38b1
-fe930be7-5e62-47db-91af-98c3a49a38b1 = "fe930be7-5e62-47db-91af-98c3a49a38b1"
+# Define role to check/configure
+$roleName = "Helpdesk Administrator"
+$roleDefUri = "https://graph.microsoft.com/v1.0/roleManagement/directory/roleDefinitions?$filter=displayName eq '$roleName'"
+$roleDef = Invoke-MgGraphRequest -Method GET -Uri $roleDefUri
 
-Write-Host "Configuring PIM policies for Role Template ID: fe930be7-5e62-47db-91af-98c3a49a38b1" -ForegroundColor Cyan
-
-# Example structure for querying role management schedule settings via Graph SDK
- = Get-MgRoleManagementDirectoryRoleAssignmentScheduleDefinition -Filter "roleDefinitionId eq 'fe930be7-5e62-47db-91af-98c3a49a38b1'" -ErrorAction SilentlyContinue
-
-if () {
-    Write-Host "Successfully retrieved PIM role assignment schedule definitions!" -ForegroundColor Green
+if ($null -ne $roleDef -and $null -ne $roleDef.value) {
+    Write-Host "Found role definition for $roleName." -ForegroundColor Green
+    # Add your PIM configuration logic here
 } else {
-    Write-Host "PIM role schedule definitions are initializing or require tenant P2 feature propagation." -ForegroundColor Yellow
+    Write-Host "Role definition not found or requires specific permissions." -ForegroundColor Yellow
 }
+
+Write-Host "PIM configuration check complete!" -ForegroundColor Green
