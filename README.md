@@ -41,6 +41,11 @@ Welcome to my **Microsoft Identity and Access Management (SC-300)** automation r
 | **13** | `13-Audit-PIMAssignments.ps1` | Audits PIM eligible and active privileged role assignments and schedule instances. |
 | **14** | `14-Audit-AccessReviews.ps1` | Inspects active Access Review definitions and review instances to enforce governance compliance. |
 
+### Phase 4: Identity Governance Lifecycles & B2B Collaboration (Days 91+)
+| Module | Script Name | Description |
+| :--- | :--- | :--- |
+| **15** | `15-Audit-LifecycleWorkflows.ps1` | Audits Identity Governance Lifecycle Workflows and execution states. |
+
 ---
 
 ## 🛡️ Automated CI/CD Pipeline (`validate-scripts.yml`)
