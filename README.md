@@ -9,7 +9,7 @@ Welcome to my **Microsoft Identity and Access Management (SC-300)** automation r
 * **Author:** Frank Fru
 * **Website:** [frankfru.com](https://frankfru.com)
 * **GitHub:** [@chifru19](https://github.com/chifru19)
-* **LinkedIn:** [Connect on LinkedIn](https://www.linkedin.com)
+* **LinkedIn:** [Connect with Frank Fru on LinkedIn](https://www.linkedin.com/in/frank-fru)
 
 ---
 
